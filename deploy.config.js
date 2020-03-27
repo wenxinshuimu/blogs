@@ -1,7 +1,8 @@
 module.exports = {
   app: [{
     name: 'blogs',
-    script: 'server/index.js',
+    script: 'app.js',
+    node_args: "--harmony",
     env: {
       COMMON_VARIABLE: 'true'
     },
