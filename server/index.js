@@ -29,11 +29,12 @@ async function start () {
     port = process.env.PORT || 3003
   } = nuxt.options.server
 
-  await nuxt.ready()
   // Build in development
   if (config.dev) {
     const builder = new Builder(nuxt)
     await builder.build()
+  } else {
+    await nuxt.ready()
   }
   // 路由设置
   app.use(article.routes()).use(article.allowedMethods());
