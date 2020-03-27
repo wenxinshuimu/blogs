@@ -1,4 +1,4 @@
-import axios from 'axios'
+const axios = require('axios') 
 // axios 初始化配置
 const axiosIns = axios.create({
   // 配置地址和超时时间

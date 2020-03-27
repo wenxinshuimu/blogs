@@ -19,7 +19,7 @@ module.exports = {
       repo: 'https://15277951017@gitee.com/wenxinshuimu/blogs.git',
       path: '/www/blogs/production',
       'pre-deploy': 'git fetch --all',
-      'post-deploy': 'npm install && pm2 startOrRestart deploy.config.js --env production',
+      'post-deploy': 'npm install && npm run build && npm start && pm2 startOrRestar deploy.config.js --env production',
 
     }
   }

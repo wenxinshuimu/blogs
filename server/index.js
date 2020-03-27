@@ -2,9 +2,9 @@ const Koa = require('koa')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 
-import bodyParser from 'koa-bodyparser'; // 处理post请求
-import json from 'koa-json' // 美化json
-import article from './interface/article' // 用户接口
+const bodyParser = require('koa-bodyparser'); // 处理post请求
+const json  = require('koa-json') // 美化json
+const article = require('./interface/article') // 用户接口
 const app = new Koa()
 
 

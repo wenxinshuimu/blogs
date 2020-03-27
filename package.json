@@ -5,17 +5,14 @@
   "author": "xiaolu",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server --exec babel-node",
+    "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
     "build": "nuxt build",
-    "start": "cross-env NODE_ENV=production node server/index.js",
+    "start": "cross-env NODE_ENV=production pm2 start server/index.js",
     "generate": "nuxt generate"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
     "axios": "^0.18.1",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
     "cross-env": "^5.2.0",
     "js-pinyin": "^0.1.9",
     "koa": "^2.6.2",
@@ -23,11 +20,11 @@
     "koa-json": "^2.0.2",
     "koa-router": "^8.0.8",
     "lodash": "^4.17.15",
-    "node-sass": "^4.13.1",
-    "nuxt": "^2.0.0",
-    "sass-loader": "^8.0.2"
+    "nuxt": "^2.0.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.9"
+    "node-sass": "^4.13.1",
+    "nodemon": "^1.18.9",
+    "sass-loader": "^8.0.2"
   }
 }

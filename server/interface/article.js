@@ -1,6 +1,6 @@
 // 文章页面接口
-import Router from 'koa-router'// 路由
-import axios from './utils/axios' // 请求
+const Router = require('koa-router')// 路由
+const axios = require('./utils/axios') // 请求
 
 //路由前缀
 let router = new Router({
@@ -36,4 +36,4 @@ router.post('/getArticleDetailList', async (ctx) => {
   }
 })
 
-export default router;
+module.exports = router;
