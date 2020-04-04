@@ -9,7 +9,10 @@ let router = new Router({
 
 // 获取文章列表
 router.post('/getArticleList', async (ctx) => {
-  let {status, data} = await axios.post(`http://eu.weixiaolu.cn/service/?c=WebApi-getArticleList`);
+  //console.log('123',ctx.request.body.type)
+  let {status, data} = await axios.post(`http://eu.weixiaolu.cn/service/?c=Knowledge-getKeywordList`, {
+    type: ctx.request.body.type
+  });
   if (status === 200) {
     ctx.body = {
       data
@@ -22,8 +25,9 @@ router.post('/getArticleList', async (ctx) => {
 })
 // 获取文章详情列表
 router.post('/getArticleDetailList', async (ctx) => {
-  let {status, data} = await axios.post(`http://eu.weixiaolu.cn/service/?c=WebApi-getArticleDetailList`, {
-    id: ctx.request.body.username
+  //console.log(ctx.request.body)
+  let {status, data} = await axios.post(`http://eu.weixiaolu.cn/service/?c=Knowledge-getDocumentById`, {
+    _id: ctx.request.body._id
   });
   if (status === 200) {
     ctx.body = {

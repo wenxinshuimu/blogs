@@ -1,4 +1,5 @@
 const Koa = require('koa')
+const cors = require('koa2-cors');
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 
@@ -6,7 +7,7 @@ import bodyParser from 'koa-bodyparser'; // 处理post请求
 import json from 'koa-json' // 美化json
 import article from './server/interface/article' // 用户接口
 const app = new Koa()
-
+app.use(cors());
 
 // 处理扩展类型
 app.use(bodyParser({

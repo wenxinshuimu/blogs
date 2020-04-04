@@ -4,7 +4,7 @@
     <ul class="nav" @click="handleClickNav" ref="navItem">
       <li class="nav-list current-nav-item"><nuxt-link class="link" to="/"> 首页</nuxt-link></li>
       <li class="nav-list"><nuxt-link class="link" to="/type/front"> 前端</nuxt-link></li>
-      <li class="nav-list"><nuxt-link class="link" to="/type/php"> PHP</nuxt-link>
+      <li class="nav-list"><nuxt-link class="link" to="/type/PHP"> PHP</nuxt-link>
         <!-- <template>
           <menu-list :menuList="programList"></menu-list>
         </template> -->
@@ -20,7 +20,6 @@
   </div>
 </template>
 <script>
-import { mapMutations } from 'vuex'
 import MenuList from './sub/MenuList'
 export default {
   name: 'MyHeader',
@@ -37,7 +36,6 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setNavName']),
     // 切换导航栏菜单
     handleClickNav (e) {
       this.navItem = this.$refs.navItem.children; //document.getElementsByClassName('nav-list');

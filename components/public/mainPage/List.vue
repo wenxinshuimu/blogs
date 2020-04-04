@@ -2,18 +2,18 @@
   <div class="list-wrap">
     <div class="list-title">
       <i class="iconfont icon-arrow"></i>
-      <h2 class="title"><a href="">{{dataInfo.title}}</a></h2>
+      <h2 class="title"><nuxt-link :to="'/detail/'+ dataInfo._id">{{dataInfo.name}}</nuxt-link></h2>
     </div>
-    <div class="list-info">
-      {{dataInfo.abstract}}
+    <div class="list-info" v-html="dataInfo.summary">
+      <!-- {{dataInfo.summary}} -->
     </div>
     <div class="list-more">
-      <nuxt-link :to="'/detail/'+ id">阅读更多>></nuxt-link>
+      <nuxt-link :to="'/detail/'+ dataInfo._id">阅读更多>></nuxt-link>
     </div>
     <div class="list-tip">
-      <span  class="iconfont icon-user"><a href="">文心水木</a></span>
-      <span class="iconfont icon-time"><a href="">{{dataInfo.time}}</a></span>
-      <span class="iconfont icon-tag-line"><a href="">{{dataInfo.type}}</a></span>
+      <span  class="iconfont icon-user"><a href="">{{dataInfo.releaseFor}}</a></span>
+      <span class="iconfont icon-time"><a href="">{{dataInfo.releaseDate}}</a></span>
+      <span class="iconfont icon-tag-line"><a href="">{{dataInfo.classification}}</a></span>
     </div>
   </div>
 </template>

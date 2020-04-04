@@ -16,19 +16,20 @@
     }
     .title {
       line-height: 50px;
-      >a {
-        color: #41B883;
-      }
-      >a:hover {
-        color: #2e9869;
-      }
+      color: #41B883;
     }
   }
   .list-info {
     font-family: iconfont;
-    text-indent: 36px;
+    //text-indent: 36px;
     font-size: 15px;
     line-height: 25px;
+    ul {
+      &.list-paddingleft-2{
+        text-indent: 36px !important;
+      }
+      
+    }
   }
   .list-more {
     font-size: 12px;

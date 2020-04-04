@@ -15,7 +15,7 @@ export default {
         id: 'front',
         name: '前端'
       },{
-        id: 'php',
+        id: 'PHP',
         name: 'PHP'
       },{
         id: 'MySQL',
@@ -28,11 +28,15 @@ export default {
   },
   computed: {
     title () {
-      return this.navName.filter(item => item.id == this.$route.params.id)[0].name;
+      return this.navName.filter(item => item.id == this.$route.params.type)[0].name;
     }
   },
   async asyncData(ctx) {
-		let {status, data} = await ctx.$axios.post('/article/getArticleList');
+    
+    console.log(ctx.params)
+		let {status, data} = await ctx.$axios.post('/article/getArticleList', {
+      type: ctx.params.type
+    });
 		if (status === 200) {
 				console.log(data.data.data)
 			return {

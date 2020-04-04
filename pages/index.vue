@@ -11,10 +11,23 @@ export default {
   components: {
     MyIndex
   },
+  // async mounted () {
+  //   let {status, data} = await this.$axios.post('/article/getArticleList',{
+  //     type: 'js'
+  //   });
+	// 	if (status === 200) {
+	// 			console.log(data.data.data)
+	// 		return {
+  //       indexList: data.data.data
+	// 		}
+	// 	}
+  // },
   async asyncData(ctx) {
-		let {status, data} = await ctx.$axios.post('/article/getArticleList');
+		let {status, data} = await ctx.$axios.post('/article/getArticleList',{
+      type: ''
+    });
 		if (status === 200) {
-				console.log(data.data.data)
+				//console.log(data.data.data)
 			return {
         indexList: data.data.data
 			}

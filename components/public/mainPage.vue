@@ -3,6 +3,7 @@
     <div class="left-wrap">
       <h2 :class="[title ? 'left-title' : '']">{{title}}</h2>
       <list v-for="(item,index) in list" :key="index" :dataInfo="item"></list>
+      <pagination></pagination>
     </div>
     <div class="right-wrap">
       <tag-block></tag-block>
@@ -18,6 +19,7 @@
 import List from '../public/mainPage/List'
 import TagBlock from './Tag/TagBlock'
 import TagList from './Tag/TagList'
+import Pagination from '../public/Pagination'
 export default {
   name: 'Front',
   props: {
@@ -33,7 +35,8 @@ export default {
   components: {
     List,
     TagBlock,
-    TagList
+    TagList,
+    Pagination
   }
 }
 </script>

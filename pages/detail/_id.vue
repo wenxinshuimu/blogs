@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="detail-left-wrap">
-      <detail-list></detail-list>
+      <detail-list :detailInfo="detailInfo"></detail-list>
     </div>
     <div class="detail-right-wrap">
       <tag-block></tag-block>
@@ -23,23 +23,21 @@ export default {
     TagBlock,
     TagList
   },
-  mounted () {
-    this.getDetailList()
-  },
-  methods: {
-    async getDetailList () {
-      console.log(this.$route.params.id);
-      let {status, data} = await this.$axios.post('/article/getArticleDetailList', {
-        id: this.$route.params.id
-      });
-      // if (status === 200) {
-      //     console.log(data.data.data)
-      //   return {
-      //     indexList: data.data.data
-      //   }
-      // }
+  data () {
+    return {
+      
     }
-  }
+  },
+  async asyncData(ctx) {
+		let {status, data} = await ctx.$axios.post('/article/getArticleDetailList', {
+        _id: ctx.params.id
+      });
+		if (status === 200) {
+			return {
+        detailInfo: data.data.document
+			}
+		}
+	}
 }
 </script>
 
@@ -47,8 +45,10 @@ export default {
   .container {
     display: flex;
     flex-direction: row;
+    width: 70%;
     .detail-left-wrap {
-      width: 900px;
+      width: 70%;
+      margin: 0 auto;
       background-color: #fff;
     }
     .detail-right-wrap {

@@ -29,7 +29,9 @@ module.exports = {
   */
   css: [
     '@/assets/css/main.css',
-    '@/assets/css/iconfont.css'
+    '@/assets/css/iconfont.css',
+    '@/assets/css/iframe.css',
+    '@/assets/css/pagination.css',
   ],
   /*
   ** Plugins to load before mounting the App
