@@ -1,9 +1,9 @@
 <template>
-  <div class="menu-list">
-    <ul>
-      <li v-for="item in menuList" :key="item"><nuxt-link :to="'/' + item">{{item}}</nuxt-link></li>
+    <ul class="nav">
+      <li class="nav-list" v-for="(item, index) in menuList" :key="index" >
+        <nuxt-link class="link" :to="item.path">{{item.name}}</nuxt-link>
+      </li>
     </ul>
-  </div>
 </template>
 <script>
 export default {
@@ -17,19 +17,30 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  .menu-list {
-    display: none;
-    z-index: 999;
-    color: #fff;
-    background-color: #09c6ec;
-    >ul li a {
-      color: #fff;
+    .nav {
+      display: flex;
+      text-align: center;
+      justify-content: center;
       width: 100%;
-      display: block;
+      .nav-list {
+        width: 70px;
+        height: 100%;
+        min-width: 50px;
+        a {
+          color: #fff;
+          width: 100%;
+          display: block;
+        }
+        a:hover {
+          color: #eee;
+          background-color: #70dcf1;
+        }
+        a.nuxt-link-exact-active{
+          background-color: #09c7ecbf;
+        }
+        // a.nuxt-link-active{
+        //   background-color: #09c7ecbf;
+        // }
+      }
     }
-    >ul li a:hover {
-     color: #eee;
-     background-color: #70dcf1;
-    }
-  }
 </style>

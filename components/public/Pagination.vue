@@ -2,11 +2,11 @@
   <ul @click="onPagerClick" class="pagination">
     <li
       class="iconfont icon-back"
-      v-if="pageCount > 0"
+      v-if="pageCount > 1"
       ></li>
     <li
       :class="{ active: currentPage === 1, disabled }"
-      v-if="pageCount > 0"
+      v-if="pageCount > 1"
       class="number">1</li>
     <li
       class="iconfont more icon-more-dot btn-quickprev"
@@ -34,7 +34,7 @@
     </li>
     <li
       class="iconfont icon-forword"
-      v-if="pageCount > 0">
+      v-if="pageCount > 1">
     </li>
   </ul>
 </template>
@@ -44,9 +44,6 @@
     name: 'ElPager',
     data () {
       return {
-        currentPage: 1, // 当前页数
-        pageCount: 35,  // 总页数
-        pagerCount: 8,  //页码按钮的数量，当总页数超过该值时会折叠
         disabled: false,
         current: null,
         showPrevMore: false,  // 是否显示前一个更多
@@ -56,15 +53,27 @@
       }
       
     },
-    // props: {
-    //   currentPage: Number,
-
-    //   pageCount: Number,
-
-    //   pagerCount: Number,
-
-    //   disabled: Boolean
-    // },
+    props: {
+      total: {
+        type: Number,
+        default: 1
+      },
+      pageSize:  {
+        type: Number,
+        default: 10
+      },
+      pagerCount:  {  //页码按钮的数量，当总页数超过该值时会折叠
+        type: Number,
+        default: 6
+      },
+      currentPage:  {  // 当前页数
+        type: Number,
+        default: 1
+      }
+    },
+    model: {
+      prop: 'currentPage'
+    },
 
     watch: {
       showPrevMore(val) {
@@ -88,6 +97,12 @@
         const currentPage = this.currentPage; // 当前页数
         const pagerCountOffset = this.pagerCount - 2; // 页码移动数量
 
+        if (target.className.indexOf('icon-back') !== -1) {
+          newPage = currentPage - 1;
+        }
+        if (target.className.indexOf('icon-forword') !== -1) {
+          newPage = currentPage + 1;
+        }
         // 如果点击了更多
         if (target.className.indexOf('more') !== -1) {
           // 如果点击了后一个更多
@@ -113,8 +128,8 @@
         }
         // 如果新页码 不等于当前页面，重新赋值当前新页码
         if (newPage !== currentPage) {
-          //  this.$emit('change', newPage);
-          this.currentPage = newPage;
+          // this.currentPage = newPage;
+          this.$emit('input', newPage);
         }
       },
       // 鼠标移动到省略号上时的样式
@@ -129,6 +144,11 @@
     },
 
     computed: {
+       // 总页数
+      pageCount() {
+        return Math.ceil(this.total / this.pageSize);
+      },
+      // 页码
       pagers() {
         const pagerCount = this.pagerCount; // 页码按钮的数量
         const halfPagerCount = (pagerCount - 1) / 2;

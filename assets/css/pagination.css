@@ -15,7 +15,7 @@
     color: #C0C4CC
 }
 
- .pagination li:not(.disabled):hover {
+ .pagination li:not(.disabled.iconfont):hover {
     /* color: #409EFF */
     color: #fff
 }
@@ -42,7 +42,10 @@
     -ms-user-select: none;
     user-select: none;
     list-style: none;
-    font-size: 0
+    font-size: 0;
+    width: 100%;
+    text-align: center;
+    margin: 12px;
 }
 
 .pagination .more::before {
@@ -74,11 +77,15 @@
     border-left: 0
 }
 
-.pagination li:hover {
+.pagination li:not(.iconfont):hover {
     color: #fff;
     cursor: pointer;
     background-color: rgba(202, 223, 243, 0.877);
     border-radius: 14px;
+}
+.pagination .iconfont:hover {
+    color: #409EFF;
+    cursor: pointer;
 }
 
 .pagination li.active {

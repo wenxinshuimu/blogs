@@ -24,9 +24,6 @@ export default {
 <style lang="scss">
   .main_container {
     margin-top: 80px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
     min-height: calc(100vh - 163px);
     min-width: 1000px;
   }

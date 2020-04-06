@@ -9,9 +9,13 @@ let router = new Router({
 
 // 获取文章列表
 router.post('/getArticleList', async (ctx) => {
-  //console.log('123',ctx.request.body.type)
+  // console.log('123',ctx.request.body.type)
+  // console.log('222',ctx.request.body.currentPage)
+  // console.log('333',ctx.request.body.pageSize)
   let {status, data} = await axios.post(`http://eu.weixiaolu.cn/service/?c=Knowledge-getKeywordList`, {
-    type: ctx.request.body.type
+    type: ctx.request.body.type,
+    currentPage: ctx.request.body.currentPage,
+    pageSize: ctx.request.body.pageSize,
   });
   if (status === 200) {
     ctx.body = {

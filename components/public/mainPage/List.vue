@@ -11,8 +11,8 @@
       <nuxt-link :to="'/detail/'+ dataInfo._id">阅读更多>></nuxt-link>
     </div>
     <div class="list-tip">
-      <span  class="iconfont icon-user"><a href="">{{dataInfo.releaseFor}}</a></span>
-      <span class="iconfont icon-time"><a href="">{{dataInfo.releaseDate}}</a></span>
+      <span  class="iconfont icon-user"><nuxt-link to="/aboutme">{{dataInfo.releaseFor}}</nuxt-link></span>
+      <span class="iconfont icon-time"><a href="">{{dataInfo.releaseDate.slice(0, 10)}}</a></span>
       <span class="iconfont icon-tag-line"><a href="">{{dataInfo.classification}}</a></span>
     </div>
   </div>

@@ -8,7 +8,7 @@
     </div>
     <div class="list-tip">
       <span  class="iconfont icon-user"><a href="">{{detailInfo.releaseFor}}</a></span>
-      <span class="iconfont icon-time"><a href="">{{detailInfo.releaseDate}}</a></span>
+      <span class="iconfont icon-time"><a href="">{{detailInfo.releaseDate.slice(0, 10)}}</a></span>
       <span class="iconfont icon-tag-line"><a href="">{{detailInfo.classification}}</a></span>
     </div>
   </div>

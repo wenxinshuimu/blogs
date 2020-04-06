@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 70%;
+  margin: 0 auto;
+  .left-wrap {
+    flex-direction: column;
+    background-color: #fff;
+    flex: 3;
+    display: flex;
+    min-width: 700px; 
+    .left-list {
+      flex-grow: 1;
+    }
+    .left-title {
+      padding: 10px 0 0 20px;
+      color: #444;
+      margin-bottom: -25px;
+    }
+  }
+  .right-wrap {
+    min-width: 200px;
+    margin-left: 20px;
+    width: 300px;
+  }
+}
