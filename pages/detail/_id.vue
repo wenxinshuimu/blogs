@@ -17,6 +17,9 @@
 import DetailList from '@/components/public/mainPage/DetailList'
 import TagBlock from '@/components/public/Tag/TagBlock'
 import TagList from '@/components/public/Tag/TagList'
+import ArticleModel from '../../models/Article'
+
+const articleModel = new ArticleModel();
 export default {
   components: {
     DetailList,
@@ -29,9 +32,8 @@ export default {
     }
   },
   async asyncData(ctx) {
-		let {status, data} = await ctx.$axios.post('/article/getArticleDetailList', {
+		let {status, data} = await articleModel.getArticleDetailList(ctx.params.id);
         _id: ctx.params.id
-      });
 		if (status === 200) {
 			return {
         detailInfo: data.data.document
