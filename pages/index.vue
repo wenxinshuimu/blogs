@@ -11,11 +11,8 @@
       </pagination>
     </div>
     <div class="right-wrap">
-      <tag-block></tag-block>
-      <tag-list></tag-list>
-      <tag-block></tag-block>
-      <tag-block></tag-block>
-      <tag-block></tag-block>
+      <tag-block :tagList="tagList"></tag-block>
+      <!-- <tag-list></tag-list> -->
     </div>
   </div>
 </template>
@@ -45,18 +42,20 @@ export default {
     Pagination
   },
   async asyncData(ctx) {
-		let {status, data: {data}} = await articleModel.getArticleList('', 1, 5); 
-		if (status === 200) {
+		let {status, data: {data}} = await articleModel.getArticleList(); 
+    let {status: statusTag, data: tagData} = await articleModel.getTagList();
+		if (status === 200  && statusTag == 200) {
 				//console.log(data.data.data)
 			return {
         indexList: data.data,
-        total: data.total
+        total: data.total,
+        tagList: tagData.data.data.filter((item) => item._id !== null)
 			}
 		}
   },
   watch: {
     async currentPage () {
-      let {status, data: {data}} = await articleModel.getArticleList('', this.currentPage, this.pageSize); 
+      let {status, data: {data}} = await articleModel.getArticleList(); 
       if (status === 200) {
           //console.log(data.data.data)
           this.indexList = data.data

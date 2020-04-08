@@ -15,8 +15,8 @@
       <li class="nav-list"><nuxt-link class="link" to="/aboutme"> 关于我</nuxt-link></li>
     </ul> -->
     <div class="nav-search">
-      <input type="text" class="from-search" placeholder="请输入搜索关键字">
-      <button class="search-btn">搜索</button>
+      <input type="text" class="from-search" placeholder="请输入搜索关键字" v-model="keyword">
+      <button class="search-btn" @click="handleKeywordSearch">搜索</button>
     </div>
   </div>
 </template>
@@ -32,6 +32,7 @@ export default {
   },
   data() {
     return {
+      keyword: '',
       programList: [{
         path: '/',
         name: '首页'
@@ -54,15 +55,9 @@ export default {
       navItem: ''
     }
   },
-  mounted (){
-    console.log('333', this.$route);
-  },
-
   methods: {
     // 切换导航栏菜单
     handleClickNav (e) {
-      
-    //console.log('222', this.location.);
       this.navItem = this.$refs.navItem.children; //document.getElementsByClassName('nav-list');
       let tar = e.target.parentNode,
           tarIndex = Array.prototype.indexOf.call(this.navItem, tar);
@@ -73,6 +68,11 @@ export default {
         }
         tar.className += ' current-nav-item';
       }
+    },
+    handleKeywordSearch () {
+      // console.log(this.keyword);
+      this.$router.push('/type/key-'+ this.keyword);
+      this.keyword = '';
     }
   }
 }

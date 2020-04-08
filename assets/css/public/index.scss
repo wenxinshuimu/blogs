@@ -10,6 +10,7 @@
     flex: 3;
     display: flex;
     min-width: 700px; 
+    min-height: calc(100vh - 161px);
     .left-list {
       flex-grow: 1;
     }

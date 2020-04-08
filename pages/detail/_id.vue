@@ -4,11 +4,8 @@
       <detail-list :detailInfo="detailInfo"></detail-list>
     </div>
     <div class="detail-right-wrap">
-      <tag-block></tag-block>
-      <tag-list></tag-list>
-      <tag-block></tag-block>
-      <tag-block></tag-block>
-      <tag-block></tag-block>
+      <tag-block :tagList="tagList"></tag-block>
+      <!-- <tag-list></tag-list> -->
     </div>
   </div>
 </template>
@@ -33,10 +30,11 @@ export default {
   },
   async asyncData(ctx) {
 		let {status, data} = await articleModel.getArticleDetailList(ctx.params.id);
-        _id: ctx.params.id
-		if (status === 200) {
+    let {status: statusTag, data: tagData} = await articleModel.getTagList();
+		if (status === 200  && statusTag == 200) {
 			return {
-        detailInfo: data.data.document
+        detailInfo: data.data.document,
+        tagList: tagData.data.data.filter((item) => item._id !== null)
 			}
 		}
 	}
@@ -47,16 +45,21 @@ export default {
   .container {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     width: 70%;
+    margin: 0 auto;
     .detail-left-wrap {
-      width: 70%;
-      margin: 0 auto;
+      flex-direction: column;
       background-color: #fff;
+      flex: 3;
+      display: flex;
+      min-width: 700px; 
+      min-height: calc(100vh - 163px);
     }
     .detail-right-wrap {
-      width: 300px;
+      min-width: 200px;
       margin-left: 20px;
-      // background-color: #fff;
+      width: 300px;
     }
   }
 </style>

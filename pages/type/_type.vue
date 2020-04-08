@@ -1,8 +1,10 @@
 <template>
   <div class="container">
     <div class="left-wrap">
-      <h2 :class="[title ? 'left-title' : '']">{{title}}</h2>
-      <list v-for="(item,index) in indexList" :key="index" :dataInfo="item"></list>
+      <div class="left-list">
+        <h2 :class="[title ? 'left-title' : '']">{{title}}</h2>
+        <list v-for="(item,index) in indexList" :key="index" :dataInfo="item"></list>
+      </div>
       <pagination 
         :total="total"
         :pageSize="pageSize"
@@ -10,11 +12,8 @@
       </pagination>
     </div>
     <div class="right-wrap">
-      <tag-block></tag-block>
-      <tag-list></tag-list>
-      <tag-block></tag-block>
-      <tag-block></tag-block>
-      <tag-block></tag-block>
+      <tag-block :tagList="tagList"></tag-block>
+      <!-- <tag-list></tag-list> -->
     </div>
   </div>
 </template>
@@ -57,24 +56,56 @@ export default {
   },
   computed: {
     title () {
-      return this.navName.filter(item => item.id == this.$route.params.type)[0].name;
+      let type = this.$route.params.type;
+      // console.log('type',type)
+      if (type.indexOf('tag') !== -1) {
+        return type.slice(4);
+      }else if (type.indexOf('key') !== -1) {
+        return '搜索： ' + type.slice(4) ;
+      }else{
+        return this.navName.filter(item => item.id == type)[0].name;
+      }
     }
   },
   async asyncData(ctx) {
-    console.log(ctx.params)
-		let {status, data: {data}} = await articleModel.getArticleList(ctx.params.type, 1, 5);
-		if (status === 200) {
+    let types = ctx.params.type,
+        keyword = '',
+        type = '',
+        currentPage = 1,
+        pageSize = 5;
+    if (types.indexOf('tag') !== -1) {
+      type = types.slice(4);
+    }else if (types.indexOf('key') !== -1) {
+      keyword = types.slice(4);
+    }else {
+      type = types;
+    }
+		let {status, data: {data}} = await articleModel.getArticleList(type, keyword, currentPage, pageSize);
+    let {status: statusTag, data: tagData} = await articleModel.getTagList();
+		if (status === 200  && statusTag == 200) {
 			return {
         indexList: data.data,
-        total: data.total
+        total: data.total,
+        tagList: tagData.data.data.filter((item) => item._id !== null)
 			}
 		}
 	},
   watch: {
     async currentPage () {
-      let {status, data: {data}} = await articleModel.getArticleList(this.$route.params.type, this.currentPage, this.pageSize); 
+      let types = this.$route.params.type,
+          keyword = '',
+          type = '',
+          currentPage = 1,
+          pageSize = 5;
+      if (types.indexOf('tag') !== -1) {
+        type = types.slice(4);
+      }else if (types.indexOf('key') !== -1) {
+        keyword = types.slice(4);
+      }else {
+        type = types;
+      } 
+      let {status, data: {data}} = await articleModel.getArticleList(type, keyword, this.currentPage, this.pageSize); 
       if (status === 200) {
-          //console.log(data.data.data)
           this.indexList = data.data
       }
       window.scrollTo(0, 0);

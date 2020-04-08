@@ -1,6 +1,6 @@
 <template>
   <div class="tag-wrap">
-    <tag-title tagTitle="热门标签"></tag-title>
+    <tag-title tagTitle="标签"></tag-title>
     <block :tagList="tagList"></block>
   </div>
 </template>
@@ -13,24 +13,30 @@ export default {
     TagTitle,
     Block
   },
+  props: {
+    tagList: {
+      type: Array,
+      default: []
+    }
+  },
   data() {
     return {
-      tagList: [{
-        id: '1',
-        name: 'HTML'
-      },{
-        id: '2',
-        name: 'CSS'
-      },{
-        id: '3',
-        name: 'JavaScript'
-      },{
-        id: '4',
-        name: 'Node'
-      },{
-        id: '5',
-        name: 'MySQL'
-      }]
+      // tagList: [{
+      //   id: '1',
+      //   name: 'HTML'
+      // },{
+      //   id: '2',
+      //   name: 'CSS'
+      // },{
+      //   id: '3',
+      //   name: 'JavaScript'
+      // },{
+      //   id: '4',
+      //   name: 'Node'
+      // },{
+      //   id: '5',
+      //   name: 'MySQL'
+      // }]
     }
   }
 }
@@ -38,7 +44,7 @@ export default {
 <style lang="scss" >
   .tag-wrap {
     width: 100%;
-    height: 200px;
+    min-height: 200px;
     border: 1px solid #eee;
     border-radius: 5px;
     background-color: #fff;

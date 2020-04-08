@@ -1,6 +1,8 @@
 <template>
   <div class="tag-block">
-    <nuxt-link to="/" class="block" v-for="item in tagList" :key="item.id">{{item.name}}</nuxt-link>
+    <nuxt-link :to="'/type/' + 'tag-' + item._id" class="block" v-for="item in tagList" :key="item._id">{{item._id}}
+      <span class="num">({{item.count}})</span>
+    </nuxt-link>
   </div>
 </template>
 <script>
@@ -28,6 +30,9 @@ export default {
       line-height: 22px;
       font-size: 14px;
       color: #666;
+      .num {
+        font-size: 12px;
+      }
     }
       >a:hover {
         border: 1px solid rgb(87, 168, 87);

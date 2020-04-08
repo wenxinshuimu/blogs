@@ -2,7 +2,7 @@
   <div class="wrap">
     <div class="user-box">
       <div class="img-box">
-        <img src="@/assets/img/img.png" alt="">
+        <img src="@/assets/img/tangyuan.png" alt="">
       </div>
       <div class="info-box">
         <h3>文心水木</h3>
@@ -14,13 +14,16 @@
       <p>Gitee: </p>
       <p><a href="https://gitee.com/wenxinshuimu" target="view_frame">https://gitee.com/wenxinshuimu</a></p>
       <p>Github: </p>
-      <p><a href="https://gitee.com/wenxinshuimu" target="view_frame">https://gitee.com/wenxinshuimu</a></p>
+      <p><a href="https://gitee.com/wenxinshuimu" target="view_frame">https://github.com/wenxinshuimu</a></p>
     </div>
-    <div class="msg-box">
+    <!-- <div class="msg-box">
       <h4>项目地址</h4>
       <p><a href="https://gitee.com/wenxinshuimu" target="view_frame">H5聚生活</a></p>
       <p><a href="https://gitee.com/wenxinshuimu" target="view_frame">PC聚生活</a></p>
       <p><a href="https://gitee.com/wenxinshuimu" target="view_frame">购物车</a></p>
+    </div> -->
+    <div class="img-info">
+      <img class="img" src="@/assets/img/aboutme3.png" alt="">
     </div>
   </div>
 </template>
@@ -69,6 +72,13 @@
       }
       >p a:hover{
         color: #666;
+      }
+    }
+    .img-info {
+      height: 300px;
+      .img {
+        width: 100%;
+        opacity: .6;
       }
     }
   }
