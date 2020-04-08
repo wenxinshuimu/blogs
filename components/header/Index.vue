@@ -1,19 +1,9 @@
 <template>
   <div class="nav-bar">
-    <h1 class="logo">文心水木</h1>
+    <h2 class="logo">文心水木<span class="text">个人博客</span></h2>
     <div class="nav-menu">
       <menu-list :menuList="programList"></menu-list>
     </div>
-    <!-- <ul class="nav" @click="handleClickNav" ref="navItem">
-      <li class="nav-list current-nav-item"><nuxt-link class="link" to="/"> 首页</nuxt-link></li>
-      <li class="nav-list"><nuxt-link class="link" to="/type/front"> 前端</nuxt-link></li>
-      <li class="nav-list"><nuxt-link class="link" to="/type/PHP"> PHP</nuxt-link>
-        
-      </li>
-      <li class="nav-list"><nuxt-link class="link" to="/type/MySQL"> MySQL</nuxt-link></li>
-      <li class="nav-list"><nuxt-link class="link" to="/type/other"> 其他</nuxt-link></li>
-      <li class="nav-list"><nuxt-link class="link" to="/aboutme"> 关于我</nuxt-link></li>
-    </ul> -->
     <div class="nav-search">
       <input type="text" class="from-search" placeholder="请输入搜索关键字" v-model="keyword">
       <button class="search-btn" @click="handleKeywordSearch">搜索</button>
