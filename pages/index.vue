@@ -55,7 +55,16 @@ export default {
   },
   watch: {
     async currentPage () {
-      let {status, data: {data}} = await articleModel.getArticleList(); 
+      let types = this.$route.params.type ? this.$route.params.type : '',
+          keyword = '',
+          type = '',
+          pageSize = 5;
+      if (types.indexOf('key') !== -1) {
+        keyword = types.slice(4);
+      }else {
+        type = types;
+      } 
+      let {status, data: {data}} = await articleModel.getArticleList(type, keyword, this.currentPage, this.pageSize); 
       if (status === 200) {
           //console.log(data.data.data)
           this.indexList = data.data

@@ -95,7 +95,6 @@ export default {
       let types = this.$route.params.type,
           keyword = '',
           type = '',
-          currentPage = 1,
           pageSize = 5;
       if (types.indexOf('tag') !== -1) {
         type = types.slice(4);
